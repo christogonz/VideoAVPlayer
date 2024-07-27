@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct ContentView: View {
+    @State private var showModal: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            CustomButton(text: "Show Video")
+                .onTapGesture {
+                    showModal = true
+                }
         }
-        .padding()
+        .sheet(isPresented: $showModal, content: {
+            
+                VideoPlayerView()
+          
+        })
     }
 }
 
